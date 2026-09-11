@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>广告卡静态渲染（评审用）</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  html { background: #4e2f12; }
+  body { min-height: 100vh; }
+  #row { display: flex; gap: 16px; align-items: flex-start; padding: 20px; }
+  .adCol { height: 700px; }
+</style>
+</head>
+<body data-state="playing">
+<div id="row">
+  <div class="adCol" id="colL"></div>
+  <div class="adCol" id="colR"></div>
+</div>
+<script>
+  // 与 game.js spawnAd() 完全一致的卡片模板
+  const CARDS = [
+    { side: "colL", bottom: 420, theme: "gold", kind: "inv",
+      name: "无敌10秒", words: "十秒无敌装｜横着走都行｜闭眼下十层｜亲友团强烈推荐", left: 6 },
+    { side: "colL", bottom: 180, theme: "blue", kind: "slow",
+      name: "缓速5秒", words: "五秒慢动作｜钉板看清楚｜传送带不慌｜老司机必备", left: 3 },
+    { side: "colR", bottom: 420, theme: "gold", kind: "inv",
+      name: "无敌3秒", words: "钉板随便踩｜天花板随便顶｜大鱼抡飞也不疼｜真男人都说好", left: 9 },
+    { side: "colR", bottom: 180, theme: "blue", kind: "slow",
+      name: "缓速3秒", words: "天花板急刹车｜地图慢下来｜从容挑缝隙｜下100层神器", left: 8 },
+  ];
+  for (const c of CARDS) {
+    const float = document.createElement("div");
+    float.className = "ad-float";
+    float.style.bottom = c.bottom + "px";
+    const mTxt = (c.kind === "inv" ? "无敌!无敌!" : "缓速!缓速!") + "点击就送!手慢无!";
+    float.innerHTML = `
+      <div class="ad-card theme-${c.theme}">
+        <div class="ad-top">${c.kind === "inv" ? "🔥神装福利" : "⚡小编推荐"}·点一下</div>
+        <div class="ad-name">${c.name.replace(/(\d+)/, '<span class="n">$1</span>')}</div>
+        <div class="ad-burst">点我!</div>
+        <div class="ad-count">仅剩 <b>${c.left}</b> 秒</div>
+        <div class="ad-words">${c.words}</div>
+        <div class="ad-marquee"><span>${mTxt}${mTxt}</span></div>
+      </div>`;
+    document.getElementById(c.side).appendChild(float);
+  }
+</script>
+</body>
+</html>

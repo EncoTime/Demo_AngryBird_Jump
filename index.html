@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愤怒小鸟下100层</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="hud">
+    <div id="hearts" aria-label="生命值"></div>
+    <div id="floorBox">第 <span id="floorNum">1</span> 层 <span class="total">/ 100</span></div>
+    <div id="hudBtns">
+      <button id="btnMute" class="cbtn small" title="声音开关 (M)">🔊</button>
+      <button id="btnReset" class="cbtn" title="重置本局 (R)">⟳ 重置</button>
+    </div>
+  </div>
+  <div id="playRow">
+    <div class="adCol" id="adColL" title="点我领buff！"></div>
+    <div id="canvasWrap">
+    <canvas id="game" width="480" height="640"></canvas>
+
+    <div id="ovStart" class="overlay">
+      <div class="panel">
+        <canvas id="birdStart" class="birdBox" width="170" height="150"></canvas>
+        <div class="title-tag">愤怒的小鸟版</div>
+        <h1 class="title">愤怒小鸟<br>下100层</h1>
+        <div class="help">
+          <p><b>← →</b> 或 <b>A D</b> 左右移动</p>
+          <p>躲开<b class="c-spike">钉板</b>和<b>天花板尖刺</b></p>
+          <p>冰板会碎 · 传送带会推你 · 草板回血</p>
+          <p>下到第 <b class="c-red">100</b> 层就是真男人！</p>
+        </div>
+        <button id="btnStart" class="cbtn big">开 始</button>
+        <p class="tiny">空格也可开始 · R 键随时重置</p>
+      </div>
+    </div>
+
+    <div id="ovWin" class="overlay hidden">
+      <div class="panel">
+        <canvas id="birdWin" class="birdBox" width="170" height="150"></canvas>
+        <h1 class="title small">真男人！</h1>
+        <p class="sub">你成功下到了第 100 层！</p>
+        <button id="btnAgain" class="cbtn big">再来一局</button>
+      </div>
+    </div>
+
+    <div id="ovLose" class="overlay hidden">
+      <div class="panel">
+        <canvas id="birdLose" class="birdBox" width="170" height="150"></canvas>
+        <h1 class="title small">倒在第 <span id="loseFloor">1</span> 层</h1>
+        <p class="sub" id="loseHint">再试一次，别停下！</p>
+        <button id="btnAgain2" class="cbtn big">再来一局</button>
+      </div>
+    </div>
+  </div>
+    <div class="adCol" id="adColR" title="点我领buff！"></div>
+  </div>
+</div>
+<script src="js/art.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
